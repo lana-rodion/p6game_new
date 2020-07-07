@@ -1,0 +1,32 @@
+{
+  "name": "p6game-new",
+  "version": "0.1.0",
+  "description": "Project 6 - Create a turn-based JS board game.",
+  "keywords": [
+    "javascript",
+    "html",
+    "bootstrap",
+    "game",
+    "concatenation",
+    "click control",
+    "object",
+    "OOP",
+    "POO",
+    "software",
+    "variables",
+    "customizability",
+    "reusability",
+    "function",
+    "canvas",
+    "generator",
+    "quotes"
+  ],
+  "license": "MIT",
+  "main": "index.html",
+  "repository": "https://github.com/lana-rodion/p6game_new",
+  "author": {
+    "name": "Lana Rodion",
+    "email": "lana.rodion@gmail.com",
+    "url": "https://sveartdev.pb.design/"
+  }
+}
