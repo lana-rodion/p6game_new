@@ -1,4 +1,4 @@
-<!-- Step 3 - Version 0.1.5 2020/06/28 -->
+<!-- Phase 1 - Generate Game Grid and Board with elements - Version 0.1.0 2020/07/08 -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -41,7 +41,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-dark">
+<body id="my-page" class="bg-dark" onload="abc()">
 
     <!-- Fixed navbar -->
     <header>
@@ -81,7 +81,7 @@
         <!-- Game Rules -->
         <div class="row p-2 mb-2">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                <p><span class="text-light title mb-0">Combat de Guerriers V2</span>
+                <p><span class="text-light title mb-0">Combat de Guerriers</span>
                     <button id="volumeMute" class="btn-song float-right mt-2" onclick="mute()"><i class="fas fa-volume-mute"></i></button>
                     <button id="volumeUp" class="btn-song float-right mt-2 mr-2" onclick="play()"><i class="fas fa-volume-up"></i></button>
                 </p>
@@ -136,7 +136,7 @@
                                     <div class="offset-1 col-8">
                                         <p class="mb-0 mt-sm-2">Arme&nbsp;: <span id="hero1-weapon-name" class="text-secondary"></span></p>
                                         <p class="mb-0">
-                                            <span>Damages&nbsp;: </span><span id="hero1-weapon-infos"></span>
+                                            <span>Power&nbsp;: </span><span id="hero1-weapon-infos"></span>
                                         </p>
                                         <div class="hero1-percentage-life mt-2 mb-2">100%</div>
                                         <div class="life">
@@ -173,7 +173,7 @@
                                     <div class="offset-1 col-8">
                                         <p class="mb-0 mt-sm-2">Arme&nbsp;: <span id="hero2-weapon-name" class="text-secondary"></span></p>
                                         <p class="mb-0">
-                                            <span>Damages&nbsp;: </span><span id="hero2-weapon-infos"></span>
+                                            <span>Power&nbsp;: </span><span id="hero2-weapon-infos"></span>
                                         </p>
                                         <div class="hero2-percentage-life mt-2 mb-2">100%</div>
                                         <div class="life">
@@ -192,12 +192,12 @@
                         </div>
                     </div>
                     <!-- ./Player 2 -->
-
                 </div>
             </div>
         </div>
         <p class="text-secondary"><small>Music (background): 3skell, "Remember Me"</small></p>
     </main>
+
     <!-- GAME OVER Modal -->
     <div class="modal fade show" id="endGameModal" tabindex="-1" role="dialog" aria-labelledby="endGameModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -237,9 +237,9 @@
         </div>
     </footer>
 
+    <!-- Audio -->
     <audio src="audio/RM.mp3" preload="auto" id="musicFond" loop="loop"></audio>
     <audio preload="auto" id="gong"><source src="audio/gong.mp3" type="audio/mp3"></audio>
-
 
     <!-- Scripts for Bootstrap 4 -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

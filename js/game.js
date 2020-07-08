@@ -3,12 +3,12 @@ import { player1, player2 } from "./players.js";
 import { weapons } from "./weapons.js";
 
 export default class Game {
-    constructor(turnToPlay, board) {
-        this.turnToPlay = turnToPlay;
+    constructor(board) {
         this.board = board;
+        this.playerPlay = null;
     }
 
-    // Method to initialize the game by creating the game grid and launching the gamePlay method
+    // Method to initialize the game by creating the game grid , to place players, to display accessible cells
 
     init() {
         let height = 10;
@@ -19,57 +19,26 @@ export default class Game {
 
         this.board = new Board(player1, player2, weapons);
         this.board.createGrid(width, height);
+        this.randomPlayerStart(player1, player2);
 
-        this.board.getAccessibleCells(player1.currentCell, 3);
-        this.gamePlay();
-    }
-
-    // Method to manage the game turns and launch other methods relating to the good functioning of the game
-
-    gamePlay() {
-        let self = this;
-
-        //The .on() method attaches event handlers to the currently selected set of elements in the jQuery object.
-        $("#board").on("click", ".accessible", function() {
-
-            let adjacentCells = self.board.getAdjacentCells(self.board.cells[$(this).data("x")][$(this).data("y")]);
-
-            let boardCell = self.board.cells[$(this).data("x")][$(this).data("y")];
-            let currentPlayer = self.turnToPlay ? player1 : player2;
-            let nextPlayer = self.turnToPlay ? player2 : player1;
-
-            self.playerActions(currentPlayer, boardCell, adjacentCells);
-            self.playersDescription(currentPlayer);
-            self.board.getAccessibleCells(nextPlayer.currentCell, 3);
-        });
-    }
-
-    // Method to manage the different players actions
-
-    playerActions(player, boardCell, adjacentCells) {
-        player.move(boardCell);
-        player.changeWeapon(player);
-        if (player.isPlayerAround(adjacentCells)) {
-            this.prepareClash();
-
-            // using ternary operator : condition ? expression_1 : expression_2
-            player.fight(this.turnToPlay ? player2 : player1);
-
+        if (this.playerPlay === player1) {
+            this.board.getAccessibleCells(player1.currentCell, 3);
         } else {
-            this.turnToPlay = !this.turnToPlay;
+            this.board.getAccessibleCells(player2.currentCell, 3);
         }
     }
 
-    // Method to change the appearance of the board before the fight
 
-    prepareClash() {
-
-        $("#board div").not(".hero2, .hero1").css("opacity", "0.5");
-        $("[class^='cell']").not(".hero2, .hero1", "obstacle").addClass("battle");
-        $("#board").off("click");
-        $(".cell").addClass("accessible");
-        $(".fight-btn").css("display", "block");
+    //To determine which player starts
+    randomPlayerStart(player1, player2) {
+        let choiceRandom = Math.floor(Math.random() * 2);
+        if (choiceRandom === 0) {
+            this.playerPlay = player1;
+        } else {
+            this.playerPlay = player2;
+        }
     }
+
 
     // Method to display players stats
 
