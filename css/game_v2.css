@@ -1,6 +1,4 @@
-/* =============================== */
 /* ======= Game V2 GENERAL ======= */
-/* =============================== */
 
 * {
   box-sizing: border-box;
@@ -56,7 +54,7 @@ ul.rules {
   grid-column: 1 / 1;
 }
 
-#board > *:first-child{
+#board > *:first-child {
   grid-row: 1 / 1;
   grid-column: 1 / 1;
 }
@@ -100,7 +98,9 @@ ul.rules {
 
 /* ======= PLAYERS ======= */
 
-.imgPlayer, .hero1-avatar, .hero2-avatar {
+.imgPlayer,
+.hero1-avatar,
+.hero2-avatar {
   width: 80px;
   height: auto;
   margin-right: auto;
@@ -119,7 +119,8 @@ ul.rules {
   border: 6px solid #3bcfff;
 }
 
-.hero1-avatar, .hero2-avatar {
+.hero1-avatar,
+.hero2-avatar {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -173,7 +174,9 @@ ul.rules {
   width: 100px;
 }
 
-.btn, .fight-btn, .restart {
+.btn,
+.fight-btn,
+.restart {
   font-weight: 500;
   font-size: 0.9em;
   color: #444;
@@ -185,7 +188,8 @@ ul.rules {
   outline: none;
 }
 
-.btn, .fight-btn {
+.btn,
+.fight-btn {
   margin: 0.5em;
 }
 
@@ -207,7 +211,8 @@ ul.rules {
   background-image: url("../images/weapons/lance-gungnir_large.png");
 }
 
-.hero1-barre-life, .hero2-barre-life {
+.hero1-barre-life,
+.hero2-barre-life {
   height: 100%;
   width: 100%;
 }
@@ -222,20 +227,24 @@ ul.rules {
   border: 1px solid #356bf4;
 }
 
-.fight-btn:active, .btn:active {
+.fight-btn:active,
+.btn:active {
   transform: scale(0.9);
 }
 
 .fight-btn_attack:hover {
- background-color: #FF3469;
+  background-color: #FF3469;
   background-image: linear-gradient(to top, #ff1671, #ff6c5d, #ffa560, #ffd581, #ffffb7);
 }
-.fight-btn_defence:hover, .restart:hover {
+.fight-btn_defence:hover,
+.restart:hover {
   background-color: #B4ECFF;
   background-image: linear-gradient(to top, #4083ff, #46a5ff, #70c2ff, #a5ddff, #def5ff);
 }
 
-.fight-btn, .fight-btn_attack,  .fight-btn_defence {
+.fight-btn,
+.fight-btn_attack,
+.fight-btn_defence {
   border-style: none;
   visibility: hidden;
   padding: 0.5em;
