@@ -22,7 +22,7 @@ As in Highlander, there can only be one left!
 
 *   Start by randomly generating the game map
 *   Each box can be either: empty or inaccessible (grayed background)
-*   On the map, a limited number of weapons (4 maximum) will be randomly placed and can be collected by players who pass over them
+*   On the map, a limited number of weapons (4 maximum) will be randomly placed
 *   Create at least 4 types of weapons in the game, with different damage
 *   Each weapon has a name and an associated visual
 *   The default players weapon must deal 10 points of damage
