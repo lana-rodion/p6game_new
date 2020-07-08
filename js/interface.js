@@ -1,11 +1,3 @@
-
-// To refresh the page without blinking
-setInterval(abc, 1000);
-
-function abc() {
-
-}
-
 // Display game rules with toggle button
 $( document ).ready(function() {
 
