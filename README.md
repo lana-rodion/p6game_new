@@ -18,7 +18,7 @@ As in Highlander, there can only be one left!
 
 ## Specification
 
-### Step 1 - Map generation
+### Step 1 - Game Board and elements generation
 
 *   Start by randomly generating the game map
 *   Each box can be either: empty or inaccessible (grayed background)
@@ -29,7 +29,7 @@ As in Highlander, there can only be one left!
 *   The placement of the two players on the map is random when the game is starting
 *   Players cannot touch each other (they cannot be side by side) when the game is loading
 
-### Step 2 - Player movements
+### Step 2 - Players movements and Weapons changes
 
 *   On each turn, a player can move one to three spaces (horizontally or vertically) before complete his turn
 *   He cannot cross an obstacle

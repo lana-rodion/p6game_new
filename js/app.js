@@ -1,18 +1,19 @@
 /*
- * Phase 1 - Generate Game Grid and Board with elements
-    * Start by randomly generating the game map
-    * Each box can be either: empty or inaccessible (grayed background)
-    * Limited number of weapons (4 maximum) is randomly placed
-    * Create at least 4 types of weapons in the game, with different damage
-    * Each weapon has a name and an associated visual
-    * The default players weapon must deal 10 points of damage
-    * The placement of the two players on the map is random when the game is starting
-    * Players cannot touch each other (they cannot be side by side) when the game is loading
+ * Phase 2 - Players movements and Weapons changes
+    * On each turn, a player can move one to three spaces
+    * (horizontally or vertically) before complete his turn
+    * He cannot cross an obstacle
+    * If a player cross over a space containing a weapon,
+    * he leaves his current weapon in place and replaces it with the new one
 */
 
 import Game from "./game.js";
 
 $(document).ready(function() {
+
+    // Display the page without blinking
+    $("body").fadeIn(2000);
+
     let game = new Game(true);
 
     game.init();

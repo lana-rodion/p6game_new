@@ -8,7 +8,9 @@ export default class Board {
 
         this.width =  null;
         this.height = null;
+
         this.cells = [];
+        this.nbOfAccessCell = null;
         this.accessibleCells = [];
         this.adjacentCells = [];
     }
@@ -22,7 +24,7 @@ export default class Board {
         for (let column = 0; column < this.width; column++) {
             let columnArr = [];
             for (let row = 0; row < this.height; row++) {
-                let cellDiv = $(`<div class='cell' id='cell-c${column}-r${row}' data-x='${column}' data-y='${row}'></div>`);
+                let cellDiv = $(`<div class='cell' id='cell-x${row}-y${column}' data-x='${row}' data-y='${column}'></div>`);
                 let cell = new Cell(column, row, cellDiv);
                 columnArr.push(cell);
                 $("#board").append(cellDiv);
@@ -52,14 +54,14 @@ export default class Board {
     }
 
     players() {
-        this.randomPlayers(this.player1);
-        this.randomPlayers(this.player2);
+        this.randomPlayer(this.player1);
+        this.randomPlayer(this.player2);
     }
 
     // Method to place random player in random cell doing recursive call this.randomPlayers(player) after previous verification:
     // call the getAdjacentCells(cell) to verify if adjacent Cells and the cell of player placement are not occupied by other player
 
-    randomPlayers(player) {
+    randomPlayer(player) {
         let cell = this.randomCell();
         let adjacentCells = this.getAdjacentCells(cell);
         let adjacentPlayer = adjacentCells.filter((adjacentCell) => adjacentCell.player !== null);
@@ -69,16 +71,22 @@ export default class Board {
             cell.element.addClass(player.name);
             player.currentCell = cell;
         } else {
-            this.randomPlayers(player);
+            this.randomPlayer(player);
         }
+        //console.log("player.currentCell " + Object.keys(player.currentCell));
+        //console.log("values obstacle : " + player.currentCell.obstacle);
+        console.log("values name : " + player.name + " / values weapon in cell : " + player.weapon.name);
+        console.log("value y : " + player.currentCell.x + " / value x : " + player.currentCell.y);
+
     }
 
     // Method to calculate average number of obstacles based on the number of cells in the game grid
     // It inserts the obstacle in random Free Cell and add class css "obstacle" to this cell
 
     obstacles() {
-        let averageObstacles = Math.floor((this.width * this.height) / ((this.width + this.height) / 2));
-        for (let obstacles = 0; obstacles < averageObstacles; obstacles++) {
+        let nbObstacles = Math.floor((this.width * this.height) / ((this.width + this.height) / 2));
+
+        for (let obstacles = 0; obstacles < nbObstacles; obstacles++) {
             let cell = this.randomFreeCell();
             cell.obstacle = true;
             cell.element.addClass("obstacle");
@@ -100,7 +108,9 @@ export default class Board {
 
     randomFreeCell() {
         let cell = this.randomCell();
-        if (!cell.obstacle && cell.player === null && cell.weapon === null) {
+
+        //if (!cell.obstacle && cell.player === null && cell.weapon === null) : InternalError: too much recursion
+        if (!cell.obstacle && !cell.player && !cell.weapon) {
             return cell;
         } else {
             return this.randomFreeCell();
@@ -111,15 +121,19 @@ export default class Board {
 
     getAdjacentCells(cell) {
 
+        // To right
         if (cell.x + 1 < this.width) {
             this.adjacentCells.push(this.cells[cell.x + 1][cell.y]);
         }
+        // To left
         if (cell.x - 1 >= 0) {
             this.adjacentCells.push(this.cells[cell.x - 1][cell.y]);
         }
+        // To bottom
         if (cell.y + 1 < this.height) {
             this.adjacentCells.push(this.cells[cell.x][cell.y + 1]);
         }
+        // To up
         if (cell.y - 1 >= 0) {
             this.adjacentCells.push(this.cells[cell.x][cell.y - 1]);
         }
@@ -135,9 +149,11 @@ export default class Board {
     // This method returns an array of the accessible cells
     // using the direction indicated in parameter (horizontal / vertical / + 1 / -1)
 
-    getAccessCellsDirection(cell, nbOfAccessCell, horizontal, axis) {
+    getAccessCellsAxis(cell, horizontal, axis) {
 
-        for (let i = 1; i <= nbOfAccessCell; i++) {
+        this.nbOfAccessCell = 3;
+
+        for (let i = 1; i <= this.nbOfAccessCell; i++) {
             let x = cell.x + (horizontal ? axis * i : 0);
             let y = cell.y + (horizontal ? 0 : axis * i);
 
@@ -153,19 +169,20 @@ export default class Board {
     // This method is called in the game object of the Game class
     // Method to concat accessibleCells array in order to return all the cells accessible by the player
 
-    getAccessibleCells(cell, nbOfAccessCell) {
+    getAccessibleCells(cell) {
 
         this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, true, 1)
+            this.getAccessCellsAxis(cell, true, 1)
+        );
+
+        this.accessibleCells = this.accessibleCells.concat(
+            this.getAccessCellsAxis(cell, true, -1)
         );
         this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, true, -1)
+            this.getAccessCellsAxis(cell, false, 1)
         );
         this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, false, 1)
-        );
-        this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, false, -1)
+            this.getAccessCellsAxis(cell, false, -1)
         );
         // For each each accessible cell-element in array accessibleCells add accessible class
         this.accessibleCells.forEach((accessibleCells) => accessibleCells.element.addClass("accessible")
