@@ -9,8 +9,8 @@ export default class Board {
         this.width =  null;
         this.height = null;
         this.cells = [];
-        this.accessibleCells = [];
-        this.adjacentCells = [];
+
+        this.nbOfAccessCell = null;
     }
 
     // Method to create the grid : define cell coordinates, to push its in columns and row with for loop
@@ -41,7 +41,7 @@ export default class Board {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    // Method to return random cell with coordinates x and y, called randomNumber(0, board size)
+    // Method to return random cell with coordinates x and y, called randomNumber(0, this.width)
 
     randomCell() {
         let x = this.randomNumber(0, this.width);
@@ -111,19 +111,21 @@ export default class Board {
 
     getAdjacentCells(cell) {
 
+        let adjacentCells = [];
+
         if (cell.x + 1 < this.width) {
-            this.adjacentCells.push(this.cells[cell.x + 1][cell.y]);
+            adjacentCells.push(this.cells[cell.x + 1][cell.y]);
         }
         if (cell.x - 1 >= 0) {
-            this.adjacentCells.push(this.cells[cell.x - 1][cell.y]);
+            adjacentCells.push(this.cells[cell.x - 1][cell.y]);
         }
         if (cell.y + 1 < this.height) {
-            this.adjacentCells.push(this.cells[cell.x][cell.y + 1]);
+            adjacentCells.push(this.cells[cell.x][cell.y + 1]);
         }
         if (cell.y - 1 >= 0) {
-            this.adjacentCells.push(this.cells[cell.x][cell.y - 1]);
+            adjacentCells.push(this.cells[cell.x][cell.y - 1]);
         }
-        return this.adjacentCells;
+        return adjacentCells;
     }
 
     // Method to verify with parameters (x, y) if this cell exists in the board
@@ -132,12 +134,15 @@ export default class Board {
         return x >= 0 && x < this.width && y >= 0 && y < this.height;
     }
 
+
     // This method returns an array of the accessible cells
     // using the direction indicated in parameter (horizontal / vertical / + 1 / -1)
 
-    getAccessCellsDirection(cell, nbOfAccessCell, horizontal, axis) {
+    /*getAccessCellsAxis(cell, horizontal, axis) {
 
-        for (let i = 1; i <= nbOfAccessCell; i++) {
+        this.nbOfAccessCell = 3;
+
+        for (let i = 1; i <= this.nbOfAccessCell; i++) {
             let x = cell.x + (horizontal ? axis * i : 0);
             let y = cell.y + (horizontal ? 0 : axis * i);
 
@@ -148,27 +153,56 @@ export default class Board {
             }
         }
         return this.accessibleCells;
+    }*/
+
+    // TEST :
+
+    getAccessCellsAxis(cell, horizontal, axis) {
+        let accessibleCells = [];
+        // direction horizontal / axis par rapport à horizontal
+        this.nbOfAccessCell = 3;
+        let x = 0;
+        let y = 0;
+
+        for (let i = 1; i <= this.nbOfAccessCell; i++) {
+
+            if (horizontal === true) {
+                x = cell.x + axis * i;
+                y = cell.y + 0;
+            } else {
+                x = cell.x + 0;
+                y = cell.y + axis * i;
+            }
+
+            if (this.cellExist(x, y) && this.cells[parseInt(x)][parseInt(y)].isFree()) {
+                accessibleCells.push(this.cells[parseInt(x)][parseInt(y)]);
+            } else {
+                break;
+            }
+        }
+        return accessibleCells;
     }
 
     // This method is called in the game object of the Game class
     // Method to concat accessibleCells array in order to return all the cells accessible by the player
 
-    getAccessibleCells(cell, nbOfAccessCell) {
+    getAccessibleCells(cell) {
+        let accessibleCells = [];
 
-        this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, true, 1)
+        accessibleCells = accessibleCells.concat(
+            this.getAccessCellsAxis(cell, true, 1)
         );
-        this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, true, -1)
+
+        accessibleCells = accessibleCells.concat(
+            this.getAccessCellsAxis(cell, true, -1)
         );
-        this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, false, 1)
+        accessibleCells = accessibleCells.concat(
+            this.getAccessCellsAxis(cell, false, 1)
         );
-        this.accessibleCells = this.accessibleCells.concat(
-            this.getAccessCellsDirection(cell, nbOfAccessCell, false, -1)
+        accessibleCells = accessibleCells.concat(
+            this.getAccessCellsAxis(cell, false, -1)
         );
-        // For each each accessible cell-element in array accessibleCells add accessible class
-        this.accessibleCells.forEach((accessibleCells) => accessibleCells.element.addClass("accessible")
-        );
+        // For each accessible cell-element in array accessibleCells add accessible class
+        accessibleCells.forEach((accessibleCells) => accessibleCells.element.addClass("accessible"));
     }
 }
