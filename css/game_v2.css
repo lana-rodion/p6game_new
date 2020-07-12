@@ -198,31 +198,30 @@ ul.rules {
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
-.hero-defense img {
-  visibility: hidden;
-  position: absolute;
-  max-height: 40px;
-  top: 50%;
-  right: 5%;
-  transform: translate(-25%, -50%);
-}
-
-.hero-defense {
-  background-image: url("../images/weapons/lance-gungnir_large.png");
-}
-
 .hero1-barre-life,
 .hero2-barre-life {
   height: 100%;
   width: 100%;
 }
 
-.hero1-barre-life {
+.hero-turn {
+  height: 1.25em;
+  width: 1.25em;
+  border-radius: 50%;
+  box-sizing: content-box;
+  float: right;
+}
+
+.hero1-move, .hero2-move {
+  visibility: hidden;
+}
+
+.hero1-barre-life, .hero1-move {
   background: linear-gradient(to right, rgb(255, 220, 95), rgb(255, 96, 33));
   border: 1px solid #f48135;
 }
 
-.hero2-barre-life {
+.hero2-barre-life, .hero2-move {
   background: linear-gradient(to right, rgb(95, 255, 250), rgb(33, 81, 255));
   border: 1px solid #356bf4;
 }
