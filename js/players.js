@@ -37,6 +37,8 @@ class Player {
         }
     }
 
+    // Method to check if there is a player in cellsAround
+
     isPlayerAround(cellsAround) {
         for (let cell of cellsAround) {
             if (cell.player !== null) {
@@ -70,6 +72,42 @@ class Player {
         });
     }
 
+    // Game over Modal
+
+    endGameModal() {
+
+        $("main").css({opacity: "0.15"}).addClass("fade");
+        $(".modal-body").prepend(`<div class='${this.name}-avatar'></div>`);
+
+        $("#gameOverMessage").addClass("victory").text(`Le guerrier ${this.nickname} a gangé le Combat !`);
+        $("#endGameModal").show();
+    }
+
+    finishGameSound() {
+        // sound of finish
+        let audioEnd = new Audio("audio/gong.mp3");
+        audioEnd.play();
+    }
+
+    // Method to finish the game if one player has not life points - this.target.life <= 0
+    // This method calls the modal with game over message - this.endGameModal();
+
+    gameOver() {
+        let playerPercentageLife = "." + this.target.name + "-percentage-life";
+
+        if (this.target.life <= 0) {
+            $(playerPercentageLife).text(`${this.target.nickname} a perdu le combat`).css({color: "red", fontWeight: "600"});
+
+            $(`.${this.target.name}`).css("visibility", "hidden");
+            $(".button-action").hide();
+
+            this.finishGameSound();
+            this.endGameModal();
+        } else {
+            $(playerPercentageLife).text(`${this.target.life}%`);
+        }
+    }
+
     // Method to calculate life points
 
     scoreLife() {
@@ -80,6 +118,30 @@ class Player {
         // display barre-life and percentage-life
         $(`.${this.target.name}-barre-life`).css("width", `${lifeRemaining}%`);
 
+        this.gameOver();
+        this.target.fight(this);
+    }
+
+    fight(target) {
+        this.defense = false;
+
+        this.heroTarget(target);
+
+        $(`.${this.name}`).css("opacity", "1");
+
+        // attack-button : counts fight damages on click
+        $(`.${this.name}-attack-button`).css({visibility: "visible"}).on("click", (e) => {
+            this.scoreLife(target);
+        });
+
+        this.heroDefense(target);
+        this.restart();
+    }
+
+    restart() { //replay the battle
+        $(".restart, .close").on("click", () => {
+            location.reload();
+        });
     }
 
 }
