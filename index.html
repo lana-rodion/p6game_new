@@ -1,4 +1,4 @@
-<!-- p6game_new - Version 0.1.0 2020/07/08 -->
+<!-- p6game_new - Version 0.1.0 2020/07/15 -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -87,25 +87,31 @@
                     <button id="volumeUp" class="btn-song float-right mt-2 mr-2" onclick="play()"><i class="fas fa-volume-up"></i></button>
                 </p>
                 <p class="text-weight-light text-warning mb-0">Jeu de plateau tour par tour en JavaScript</p>
-
             </div>
 
             <div class="col-12 col-sm-12 col-md-6">
                 <button id="rules" class="btn btn-outline-light ml-0 mb-0">Règles du jeu</button>
-
-                <div id="game-rules" class="mt-2">
-                    <p class="text-weight-light text-light text-smaller mb-2">
-                        Les Vikings sont des personnifications mythiques de la force brutale.
-                        On les trouve mêlés à toutes les inventions par lesquelles l'imagination cherche à se rendre compte du jeu des éléments dans le monde.
-                    </p>
-                    <ul class="text-weight-light text-light text-smaller rules">
-                        <li>Les guerriers sont placés sur le champ de combat aléatoirement.</li>
-                        <li>Chacun est équipé d'une arme par défaut et peut se déplacer en faisant de 1 à 3 cases.</li>
-                        <li>Ils peuvent échanger ses armes contre les armes placées sur le champ de combat.</li>
-                        <li>Les armes ont des points de dégâts (puissance) différents.</li>
-                        <li>Lorsque les deux Players sont côte à côte sur des cases adjacentes (horizontalement ou verticalement), un combat s'engage.</li>
-                    </ul>
-                </div>
+            </div>
+        </div>
+        <div id="game-rules" class="row p-2">
+            <div class="col-12 col-sm-12 col-md-6">
+                <p class="text-weight-light text-warning text-smaller">
+                    Les Vikings sont des personnifications mythiques de la force brutale.
+                </p>
+                <ul class="text-weight-light text-light text-smaller rules">
+                    <li>Les guerriers sont placés sur le champ de combat aléatoirement.</li>
+                    <li>Chacun est équipé d'une arme par défaut et peut se déplacer en faisant de 1 à 3 cases.</li>
+                    <li>Ils peuvent échanger ses armes contre les armes placées sur le champ de combat.</li>
+                    <li>Les armes ont des points de dégâts (puissance) différents.</li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6">
+                <ul class="text-weight-light text-light text-smaller rules">
+                    <li>Lorsque les deux guerriers sont côte à côte, un combat s'engage.</li>
+                    <li>Les dégâts infligés dépendent de l’arme possédée par le joueur.</li>
+                    <li>Le joueur peut choisir d’attaquer ou de se défendre contre le prochain coup.</li>
+                    <li>Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal.</li>
+                </ul>
             </div>
         </div>
 
