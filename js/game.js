@@ -6,7 +6,6 @@ export default class Game {
     constructor(turnToPlay, gameBoard) {
         this.turnToPlay = turnToPlay;
         this.gameBoard = gameBoard;
-        this.playerPlay = null;
     }
 
     // Method to initialize the game by creating the game grid , to place players, to display accessible cells
