@@ -6,8 +6,6 @@ export default class Game {
     constructor(turnToPlay, gameBoard) {
         this.turnToPlay = turnToPlay;
         this.gameBoard = gameBoard;
-
-        this.playerPlay = null;
     }
 
     // Method to initialize the game by creating the game grid , to place players, to display accessible cells
@@ -23,15 +21,12 @@ export default class Game {
         this.board.createGrid(width, height);
 
         //To determine which player starts
-
-        let choiceRandom = Math.floor(Math.random() * 2);
+        let choiceRandom = this.randomNumber(0, 1);
         if (choiceRandom === 1) {
-            this.playerPlay = player1;
+            this.board.getAccessibleCells(player2.currentCell, 3);
         } else {
-            this.playerPlay = player2;
+            this.board.getAccessibleCells(player1.currentCell, 3);
         }
-
-        this.board.getAccessibleCells(this.playerPlay.currentCell, 3);
 
         //this.board.getAccessibleCells(player1.currentCell, 3);
         this.gamePlay();
@@ -56,6 +51,11 @@ export default class Game {
             self.playersDescription(currentPlayer);
             self.board.getAccessibleCells(nextPlayer.currentCell, 3);
         });
+    }
+
+
+    randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     // Method to manage the different players actions
@@ -86,6 +86,10 @@ export default class Game {
         $(".cell").addClass("accessible");
         $(".fight-btn").css("display", "block");
 
+        this.gongSound();
+    }
+
+    gongSound() {
         // sound of gong
         let audioEnd = new Audio("audio/MetalGong-SoundBible.com-1270479122.mp3");
         audioEnd.play();
