@@ -85,7 +85,7 @@ class Player {
 
     finishGameSound() {
         // sound of finish
-        let audioEnd = new Audio("audio/gong.mp3");
+        let audioEnd = new Audio("audio/MetalGong-SoundBible.com-1270479122.mp3");
         audioEnd.play();
     }
 

@@ -20,7 +20,22 @@ export default class Game {
         this.board = new Board(player1, player2, weapons);
         this.board.createGrid(width, height);
 
+
+        /*let choiceRandom = Math.floor(Math.random() * 2);
+        if (choiceRandom === 1) {
+            players.player1 = true;
+        } else {
+            players.player2 = true;
+        }
+
+        if (players.player1 === true) {
+            this.board.getAccessibleCells(players.player1.currentCell, 3);
+        } else {
+            this.board.getAccessibleCells(players.player2.currentCell, 3);
+        }*/
+
         this.board.getAccessibleCells(player1.currentCell, 3);
+
         this.gamePlay();
     }
 
@@ -72,6 +87,10 @@ export default class Game {
         $("#board").off("click");
         $(".cell").addClass("accessible");
         $(".fight-btn").css("display", "block");
+
+        // sound of gong
+        let audioEnd = new Audio("audio/MetalGong-SoundBible.com-1270479122.mp3");
+        audioEnd.play();
     }
 
     // Method to display players stats
