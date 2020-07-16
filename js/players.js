@@ -83,10 +83,10 @@ class Player {
         $("#endGameModal").show();
     }
 
-    finishGameSound() {
+    gongSound() {
         // sound of finish
-        let audioEnd = new Audio("audio/MetalGong-SoundBible.com-1270479122.mp3");
-        audioEnd.play();
+        let audioGong = new Audio("audio/MetalGong-SoundBible.com-1270479122.mp3");
+        audioGong.play();
     }
 
     // Method to finish the game if one player has not life points - this.target.life <= 0
@@ -101,7 +101,7 @@ class Player {
             $(`.${this.target.name}`).css("visibility", "hidden");
             $(".button-action").hide();
 
-            this.finishGameSound();
+            this.gongSound();
             this.endGameModal();
         } else {
             $(playerPercentageLife).text(`${this.target.life}%`);
@@ -148,3 +148,4 @@ class Player {
 
 export let player1 = new Player("hero1", "Thor");
 export let player2 = new Player("hero2", "Odin");
+
