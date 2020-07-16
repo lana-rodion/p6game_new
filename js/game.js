@@ -5,7 +5,6 @@ import { weapons } from "./weapons.js";
 export default class Game {
     constructor(turnToPlay, gameBoard) {
         this.turnToPlay = turnToPlay;
-        this.playerPlay = null;
         this.gameBoard = gameBoard;
     }
 
@@ -20,25 +19,9 @@ export default class Game {
 
         this.board = new Board(player1, player2, weapons);
         this.board.createGrid(width, height);
-        this.randomPlayerStart(player1, player2);
 
-        if (this.playerPlay === player1) {
-            this.board.getAccessibleCells(player1.currentCell, 3);
-        } else {
-            this.board.getAccessibleCells(player2.currentCell, 3);
-        }
-
+        this.board.getAccessibleCells(player1.currentCell, 3);
         this.gamePlay();
-    }
-
-    //To determine which player starts
-    randomPlayerStart(player1, player2) {
-        let choiceRandom = Math.floor(Math.random() * 2);
-        if (choiceRandom === 0) {
-            this.playerPlay = player1;
-        } else {
-            this.playerPlay = player2;
-        }
     }
 
     // Method to manage the game turns and launch other methods relating to the good functioning of the game
