@@ -6,6 +6,8 @@ export default class Game {
     constructor(turnToPlay, gameBoard) {
         this.turnToPlay = turnToPlay;
         this.gameBoard = gameBoard;
+
+        this.playerPlay = null;
     }
 
     // Method to initialize the game by creating the game grid , to place players, to display accessible cells
@@ -20,22 +22,18 @@ export default class Game {
         this.board = new Board(player1, player2, weapons);
         this.board.createGrid(width, height);
 
+        //To determine which player starts
 
-        /*let choiceRandom = Math.floor(Math.random() * 2);
+        let choiceRandom = Math.floor(Math.random() * 2);
         if (choiceRandom === 1) {
-            players.player1 = true;
+            this.playerPlay = player1;
         } else {
-            players.player2 = true;
+            this.playerPlay = player2;
         }
 
-        if (players.player1 === true) {
-            this.board.getAccessibleCells(players.player1.currentCell, 3);
-        } else {
-            this.board.getAccessibleCells(players.player2.currentCell, 3);
-        }*/
+        this.board.getAccessibleCells(this.playerPlay.currentCell, 3);
 
-        this.board.getAccessibleCells(player1.currentCell, 3);
-
+        //this.board.getAccessibleCells(player1.currentCell, 3);
         this.gamePlay();
     }
 
