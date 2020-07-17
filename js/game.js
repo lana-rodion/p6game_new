@@ -21,14 +21,14 @@ export default class Game {
         this.board.createGrid(width, height);
 
         //To determine which player starts
-        let choiceRandom = this.randomNumber(0, 1);
-        if (choiceRandom === 1) {
+        /*let choiceRandom = Math.floor(Math.random() * 2);
+        if (choiceRandom === 0) {
             this.board.getAccessibleCells(player2.currentCell, 3);
         } else {
             this.board.getAccessibleCells(player1.currentCell, 3);
-        }
+        }*/
 
-        //this.board.getAccessibleCells(player1.currentCell, 3);
+        this.board.getAccessibleCells(player1.currentCell, 3);
         this.gamePlay();
     }
 
@@ -53,12 +53,7 @@ export default class Game {
         });
     }
 
-
-    randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
-    // Method to manage the different players actions
+    // Method to manage the different players actions: to move, to change weapons, to prepare the fight
 
     playerActions(player, boardCell, cellsAround) {
 
