@@ -84,7 +84,7 @@ export default class Board {
     }
 
     // Method executed on each element of the weapons array to place the weapon in the random Free Cell
-    //This method gives the weapon property weapon.name of the cells containing them
+    // This method gives the weapon property weapon.name of the cells containing them
 
     weaponsArr() {
         this.weapons.forEach((weapon) => {
@@ -153,7 +153,7 @@ export default class Board {
     }
 
     // This method is called in the game object of the Game class
-    // Method to concat accessibleCells array in order to return all the cells accessible by the player
+    // Method to concat accessibleCells array in order to return all cells accessible by the player
 
     getAccessibleCells(cell, nbOfAccessCell) {
         let accessibleCells = [];

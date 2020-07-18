@@ -8,7 +8,7 @@ export default class Game {
         this.gameBoard = gameBoard;
     }
 
-    // Method to initialize the game by creating the game grid , to place players, to display accessible cells
+    // Method to initialize the game by creating the game grid, to place players, to display accessible cells
 
     init() {
         let height = 10;
@@ -19,14 +19,6 @@ export default class Game {
 
         this.board = new Board(player1, player2, weapons);
         this.board.createGrid(width, height);
-
-        //To determine which player starts
-        /*let choiceRandom = Math.floor(Math.random() * 2);
-        if (choiceRandom === 0) {
-            this.board.getAccessibleCells(player2.currentCell, 3);
-        } else {
-            this.board.getAccessibleCells(player1.currentCell, 3);
-        }*/
 
         this.board.getAccessibleCells(player1.currentCell, 3);
         this.gamePlay();
