@@ -10,7 +10,7 @@ class Player {
         this.defense = false;
     }
 
-    // Method to move player and change the previous cell property
+    // Method to move player and to change the previous cell property
 
     move(newCell) {
         this.currentCell.player = null;
@@ -23,7 +23,7 @@ class Player {
         $(newCell.element).addClass(this.name);
     }
 
-    // Method to exchange the player weapon for the cell weapon
+    // Method to exchange the player weapon into the cell weapon
 
     changeWeapon(player) {
         this.player = player;
@@ -58,7 +58,7 @@ class Player {
     }
 
     /*
-    * Method to give the choice of the player to attack or defend.
+    * Method to give the choice of to attack or defend.
     * No player can escape, so the function remembers itself by reversing attacker
     * and target and those until the life of one of the players is less than or equal to 0
     */
@@ -66,7 +66,7 @@ class Player {
     heroDefense() {
         this.defense = false;
 
-        $(`.${this.name}-defense-button`).css("visibility", "visible").on("click", (e) => {
+        $(`.${this.name}-defense-button`).css("visibility", "visible").on("click", () => {
             this.defense = true;
             this.target.fight(this);
         });
