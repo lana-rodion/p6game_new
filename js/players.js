@@ -55,21 +55,6 @@ class Player {
         $(`.${this.target.name}-attack-button, .${this.target.name}-defense-button`).off("click").css({visibility: "hidden"});
     }
 
-    /*
-    * Method to give the choice of the player to attack or defend.
-    * No player can escape, so the function remembers itself by reversing attacker
-    * and target and those until the life of one of the players is less than or equal to 0
-    */
-
-    heroDefense() {
-        this.defense = false;
-
-        $(`.${this.name}-defense-button`).css("visibility", "visible").on("click", (e) => {
-            this.defense = true;
-            this.target.fight(this);
-        });
-    }
-
     // Method to calculate life points
 
     scoreLife() {
