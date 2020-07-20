@@ -8,11 +8,6 @@ $( document ).ready(function() {
     });
 });
 
-/* Music volume buttons
-    <button id="volumeUp" class="btn-song float-right mt-2" onclick="play()"><i class="fas fa-volume-up"></i></button>
-    <button id="volumeMute" class="btn-song float-right mt-2" style="display: none;"><i class="fas fa-volume-mute"></i></button>
-*/
-
 const musicFond = document.getElementById("musicFond");
 
 function play() {
