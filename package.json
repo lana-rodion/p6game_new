@@ -7,8 +7,7 @@
     "html",
     "bootstrap",
     "game",
-    "concatenation",
-    "click control",
+    "event",
     "object",
     "OOP",
     "POO",
@@ -17,9 +16,9 @@
     "customizability",
     "reusability",
     "function",
-    "canvas",
-    "generator",
-    "quotes"
+    "concatenation",
+    "interface",
+    "webdesign"
   ],
   "license": "MIT",
   "main": "index.html",

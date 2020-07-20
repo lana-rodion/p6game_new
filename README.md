@@ -72,7 +72,7 @@ Project HTML / CSS / JavaScript code
 
 ***Turn-based JS board game UI on-line*** <https://p6game.lana-rodion-artdev.com/>
 
-Screenshots coming soon
+![Game interface](screens/2020-07-18_game_online_debut.png)
 
 ## Sources
 

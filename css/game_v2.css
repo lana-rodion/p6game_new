@@ -107,16 +107,27 @@ ul.rules {
   margin-left: auto;
 }
 
+.hero1-bg, .hero2-bg  {
+  width: calc(100% - 1em);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: auto;
+}
+
+.hero1-bg {
+  background-color: #ffc107;
+}
+
+.hero2-bg {
+  background-color: #3bcfff;
+}
+
 .hero1-avatar {
   background-image: url("../images/players/viking1.png");
-  background-color: #ffc107;
-  border: 6px solid #ffc107;
 }
 
 .hero2-avatar {
   background-image: url("../images/players/viking2.png");
-  background-color: #3bcfff;
-  border: 6px solid #3bcfff;
 }
 
 .hero1-avatar,
@@ -130,19 +141,13 @@ ul.rules {
 }
 
 .hero1 {
-  background-image: url("../images/players/viking_onBoard_1.png");
-  background-color: #ffc107;
+  background: #ffc107 no-repeat center url("../images/players/viking_onBoard_1.png");
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .hero2 {
-  background-image: url("../images/players/viking_onBoard_2.png");
-  background-color: #3bcfff;
+  background: #3bcfff no-repeat center url("../images/players/viking_onBoard_2.png");
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .hero2_bg {
