@@ -77,7 +77,7 @@ class Player {
     endGameModal() {
 
         $("main").css({opacity: "0.15"}).addClass("fade");
-        $(".modal-body").prepend(`<div class='${this.name}-avatar'></div>`);
+        $(".modal-body").prepend(`<div class='${this.name}-bg'><div class='${this.name}-avatar'></div></div>`);
 
         $("#gameOverMessage").addClass("victory").text(`Le guerrier ${this.nickname} a gangé le Combat !`);
         $("#endGameModal").show();
